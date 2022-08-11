@@ -23,6 +23,7 @@ class TicTacToe
 
     def get_choice_for_p1
         print "#{@player_one} enter desired location: "
+        sleep(1)
         @p1_location = gets.to_i
     end
 
@@ -34,7 +35,10 @@ class TicTacToe
     def change_square_for_p1
         if @location_array[@p1_location - 1] == "O" or @location_array[@p1_location - 1] == "X"
             puts "that square is occipied"
+            sleep(1)
             get_choice_for_p1()
+            sleep(2)
+            change_square_for_p1()
         else
             @location_array[@p1_location - 1] = "X"
             display_board()
@@ -44,7 +48,10 @@ class TicTacToe
     def change_square_for_p2
         if @location_array[@p2_location - 1] == "O" or @location_array[@p2_location - 1] == "X"
             puts "that square is occipied"
+            sleep(1)
             get_choice_for_p2()
+            sleep(2)
+            change_square_for_p2()
         else
             @location_array[@p2_location - 1] = "O"
             display_board()
@@ -62,6 +69,10 @@ class TicTacToe
     end
 end
 
+def all_equal?(arr)
+    arr.uniq.size <= 1
+end
+
 newGame = TicTacToe.new
 
 #newGame.get_players3
@@ -70,5 +81,6 @@ newGame.get_choice_for_p1
 newGame.change_square_for_p1
 newGame.get_choice_for_p2
 newGame.change_square_for_p2
+
 
 #syntax to use exit sleep
