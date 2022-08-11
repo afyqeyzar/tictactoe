@@ -148,6 +148,18 @@ def play_full_round()
         #p "Round: #{i}"
         
         newGame.player_one_turn
+        newGame.get_check_hash.each do |position, collection|
+            if collection.uniq.size == 1 && collection.length == 3
+                win = true
+            else
+                next
+            end
+        end
+        
+        if win == true
+            break
+        end
+
         newGame.player_two_turn
 
         newGame.get_check_hash.each do |position, collection|
