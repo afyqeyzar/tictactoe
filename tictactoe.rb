@@ -73,14 +73,23 @@ def all_equal?(arr)
     arr.uniq.size <= 1
 end
 
+def play_full_round()
+    9.times do |i|
+        p i
+        break if i == 7 
+    end
+end
+
 newGame = TicTacToe.new
 
+play_full_round()
+
 #newGame.get_players3
-newGame.display_board
-newGame.get_choice_for_p1
-newGame.change_square_for_p1
-newGame.get_choice_for_p2
-newGame.change_square_for_p2
+# newGame.display_board
+# newGame.get_choice_for_p1
+# newGame.change_square_for_p1
+# newGame.get_choice_for_p2
+# newGame.change_square_for_p2
 
 
 #syntax to use exit sleep
