@@ -144,6 +144,7 @@ def play_full_round()
     newGame.display_board
     #newGame.get_check_hash
     win = false
+    winning_array = nil
     while win == false
         #p "Round: #{i}"
         
@@ -151,6 +152,7 @@ def play_full_round()
         newGame.get_check_hash.each do |position, collection|
             if collection.uniq.size == 1 && collection.length == 3
                 win = true
+                winning_array = collection
             else
                 next
             end
@@ -165,17 +167,26 @@ def play_full_round()
         newGame.get_check_hash.each do |position, collection|
             if collection.uniq.size == 1 && collection.length == 3
                 win = true
+                winning_array = collection
             else
                 next
             end
         end
         
-        #p check_winner(newGame.get_check_hash)
+
 
     end
-    newGame.get_check_hash
+    #newGame.get_check_hash
+
 
     p "we have exited the loop"
+
+    if winning_array.include?("X")
+        p "X has won"
+    else
+        p "O has won"
+    end
+    #p check_winner(newGame.get_check_hash)
 end
 
 #newGame = TicTacToe.new
