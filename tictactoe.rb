@@ -37,10 +37,11 @@ class TicTacToe
             puts "that square is occipied"
             sleep(1)
             get_choice_for_p1()
-            sleep(2)
+            sleep(1)
             change_square_for_p1()
         else
             @location_array[@p1_location - 1] = "X"
+            sleep(1)
             display_board()
         end
     end
@@ -50,10 +51,11 @@ class TicTacToe
             puts "that square is occipied"
             sleep(1)
             get_choice_for_p2()
-            sleep(2)
+            sleep(1)
             change_square_for_p2()
         else
             @location_array[@p2_location - 1] = "O"
+            sleep(1)
             display_board()
         end
     end
@@ -74,9 +76,13 @@ def all_equal?(arr)
 end
 
 def play_full_round()
-    9.times do |i|
-        p i
-        break if i == 7 
+    newGame = TicTacToe.new
+    newGame.display_board
+    4.times do |i|
+        #p "Round: #{i}"
+        newGame.player_one_turn
+        newGame.player_two_turn
+        
     end
 end
 
