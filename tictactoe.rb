@@ -15,7 +15,7 @@ class TicTacToe
         #print "Enter Player 1 Name: "
         @player_one = "raeyn"
         #print "Enter Player 2 Name: "
-        @player_two = "amir"
+        @player_two = "fytri"
         @location_array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     end
 
@@ -182,9 +182,9 @@ def play_full_round()
     p "we have exited the loop"
 
     if winning_array.include?("X")
-        p "X has won"
+        p "#{newGame.player_one} has won"
     else
-        p "O has won"
+        p "#{newGame.player_two} has won"
     end
     #p check_winner(newGame.get_check_hash)
 end
