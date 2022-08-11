@@ -1,5 +1,16 @@
 class TicTacToe
     attr_reader :player_one, :player_two
+    CHECK_HASH = {
+        row_123: [],
+        row_456: [],
+        row_789: [],
+        col_147: [],
+        col_258: [],
+        col_369: [],
+        dia_159: [],
+        dia_357: []
+    }
+
     def initialize
         #print "Enter Player 1 Name: "
         @player_one = "raeyn"
@@ -7,8 +18,11 @@ class TicTacToe
         @player_two = "amir"
         @location_array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     end
+
+    def get_check_hash
+        CHECK_HASH
+    end
     
-   
     def display_board
         puts " #{@location_array[0]} | #{@location_array[1]} | #{@location_array[2]} "
         puts " -- --- --"
@@ -43,6 +57,7 @@ class TicTacToe
             @location_array[@p1_location - 1] = "X"
             sleep(1)
             display_board()
+            check_for_winner(@p1_location, "X")
         end
     end
 
@@ -57,6 +72,7 @@ class TicTacToe
             @location_array[@p2_location - 1] = "O"
             sleep(1)
             display_board()
+            check_for_winner(@p2_location, "O")
         end
     end
 
@@ -69,24 +85,103 @@ class TicTacToe
         get_choice_for_p2()
         change_square_for_p2()
     end
+
+    
+    def check_for_winner(num, symbol)
+        if num == 1
+            CHECK_HASH[:row_123] << symbol
+            CHECK_HASH[:col_147] << symbol
+            CHECK_HASH[:dia_159] << symbol
+        elsif num == 2
+            CHECK_HASH[:row_123] << symbol
+            CHECK_HASH[:col_258] << symbol
+        elsif num == 3
+            CHECK_HASH[:row_123] << symbol
+            CHECK_HASH[:col_369] << symbol
+            CHECK_HASH[:dia_357] << symbol
+        elsif num == 4
+            CHECK_HASH[:row_456] << symbol
+            CHECK_HASH[:col_147] << symbol
+        elsif num == 5
+            CHECK_HASH[:row_456] << symbol
+            CHECK_HASH[:col_258] << symbol
+            CHECK_HASH[:dia_357] << symbol
+            CHECK_HASH[:dia_159] << symbol
+        elsif num == 6
+            CHECK_HASH[:row_456] << symbol
+            CHECK_HASH[:col_369] << symbol
+        elsif num == 7
+            CHECK_HASH[:row_789] << symbol
+            CHECK_HASH[:col_147] << symbol
+            CHECK_HASH[:dia_357] << symbol
+        elsif num == 8
+            CHECK_HASH[:row_789] << symbol
+            CHECK_HASH[:col_258] << symbol
+        else
+            CHECK_HASH[:row_789] << symbol
+            CHECK_HASH[:col_369] << symbol
+            CHECK_HASH[:dia_159] << symbol
+        end
+    end
 end
 
 def all_equal?(arr)
     arr.uniq.size <= 1
 end
 
-def play_full_round()
-    newGame = TicTacToe.new
-    newGame.display_board
-    4.times do |i|
-        #p "Round: #{i}"
-        newGame.player_one_turn
-        newGame.player_two_turn
-        
+def check_winner(hash)
+    hash.each do |position, collection|
+        if collection.uniq.size == 1 && collection.length == 3
+            "theres three"
+        else
+            "not yet"
+        end
     end
 end
 
-newGame = TicTacToe.new
+def play_full_round()
+    newGame = TicTacToe.new
+    newGame.display_board
+    #newGame.get_check_hash
+    win = false
+    while win == false
+        #p "Round: #{i}"
+        
+        newGame.player_one_turn
+        newGame.player_two_turn
+
+        newGame.get_check_hash.each do |position, collection|
+            if collection.uniq.size == 1 && collection.length == 3
+                win = true
+            else
+                next
+            end
+        end
+        
+        #p check_winner(newGame.get_check_hash)
+
+    end
+    newGame.get_check_hash
+
+    p "we have exited the loop"
+end
+
+#newGame = TicTacToe.new
+
+
+test_hash = {
+    :row_123=>["X", "O", "X"], 
+    :row_456=>["X", "X"], 
+    :row_789=>[], 
+    :col_147=>["X"], 
+    :col_258=>["O"], 
+    :col_369=>[], 
+    :dia_159=>["X"], 
+    :dia_357=>[]
+}
+
+#check_winner(test_hash)
+
 
 play_full_round()
 
