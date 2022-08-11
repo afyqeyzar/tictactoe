@@ -70,3 +70,5 @@ newGame.get_choice_for_p1
 newGame.change_square_for_p1
 newGame.get_choice_for_p2
 newGame.change_square_for_p2
+
+#syntax to use exit sleep
