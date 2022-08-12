@@ -145,7 +145,7 @@ def play_full_round()
     #newGame.get_check_hash
     win = false
     winning_array = nil
-    while win == false
+    5.times do |i|
         #p "Round: #{i}"
         
         newGame.player_one_turn
@@ -160,6 +160,8 @@ def play_full_round()
         
         if win == true
             break
+        elsif i == 4
+            break
         end
 
         newGame.player_two_turn
@@ -172,6 +174,10 @@ def play_full_round()
                 next
             end
         end
+
+        if win == true
+            break
+        end
         
 
 
@@ -179,9 +185,10 @@ def play_full_round()
     #newGame.get_check_hash
 
 
-    p "we have exited the loop"
-
-    if winning_array.include?("X")
+    #p "we have exited the loop"
+    if winning_array == nil
+        p "its a tie :/"
+    elsif winning_array.include?("X")
         p "#{newGame.player_one} has won"
     else
         p "#{newGame.player_two} has won"
