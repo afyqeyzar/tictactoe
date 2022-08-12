@@ -12,10 +12,12 @@ class TicTacToe
     }
 
     def initialize
-        #print "Enter Player 1 Name: "
-        @player_one = "raeyn"
-        #print "Enter Player 2 Name: "
-        @player_two = "fytri"
+        print "Enter Player 1 Name: "
+        @player_one = gets.chomp
+        sleep(1.5)
+        print "Enter Player 2 Name: "
+        @player_two = gets.chomp
+        sleep(1.5)
         @location_array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     end
 
