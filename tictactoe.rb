@@ -127,28 +127,14 @@ class TicTacToe
     end
 end
 
-def all_equal?(arr)
-    arr.uniq.size <= 1
-end
-
-def check_winner(hash)
-    hash.each do |position, collection|
-        if collection.uniq.size == 1 && collection.length == 3
-            "theres three"
-        else
-            "not yet"
-        end
-    end
-end
-
 def play_full_round()
     newGame = TicTacToe.new
     newGame.display_board
-    #newGame.get_check_hash
+    
     win = false
     winning_array = nil
     5.times do |i|
-        #p "Round: #{i}"
+        
         
         newGame.player_one_turn
         newGame.get_check_hash.each do |position, collection|
@@ -184,10 +170,10 @@ def play_full_round()
 
 
     end
-    #newGame.get_check_hash
+    
 
 
-    #p "we have exited the loop"
+    
     if winning_array == nil
         p "its a tie :/"
     elsif winning_array.include?("X")
@@ -195,34 +181,9 @@ def play_full_round()
     else
         p "#{newGame.player_two} has won"
     end
-    #p check_winner(newGame.get_check_hash)
+    
 end
 
-#newGame = TicTacToe.new
-
-
-test_hash = {
-    :row_123=>["X", "O", "X"], 
-    :row_456=>["X", "X"], 
-    :row_789=>[], 
-    :col_147=>["X"], 
-    :col_258=>["O"], 
-    :col_369=>[], 
-    :dia_159=>["X"], 
-    :dia_357=>[]
-}
-
-#check_winner(test_hash)
 
 
 play_full_round()
-
-#newGame.get_players3
-# newGame.display_board
-# newGame.get_choice_for_p1
-# newGame.change_square_for_p1
-# newGame.get_choice_for_p2
-# newGame.change_square_for_p2
-
-
-#syntax to use exit sleep
